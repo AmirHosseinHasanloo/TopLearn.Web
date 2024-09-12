@@ -261,6 +261,13 @@ UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
 
+# videos and images for test
+*.mp3
+*.mp4
+*.png
+*.jpg
+*.rar
+
 # SQL Server files
 *.mdf
 *.ldf
