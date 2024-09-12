@@ -1,0 +1,14 @@
+﻿.fixThumb {
+    height: 150px;
+    border-radius: 6px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+}
+
+.voteButton {
+    width: 22px !important;
+    float: right !important;
+    margin: 0 !important;
+    margin-bottom:2px !important;
+    margin-left: 6px !important;
+}

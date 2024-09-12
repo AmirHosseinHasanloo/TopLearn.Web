@@ -1,0 +1,27 @@
+﻿@page "{id}"
+@model TopLearn.Web.Pages.Admin.CourseGroups.RecoveryModel
+@{
+    ViewData["Title"] = "بازگزدانی گروه";
+}
+
+<div class="clearfix">
+    <br />
+    <br />
+</div>
+
+<div class="container alert alert-info text-center col-md-12 col-sm-12">
+
+    <form method="post">
+        <input type="hidden" asp-for="CourseGroup.GroupId" />
+
+        <p>
+            آیا از بازگردانی گروه "@Model.CourseGroup.GroupTitle" مطمئن هستید ؟
+        </p>
+
+        <p>
+            <input type="submit" class="btn btn-outline btn-danger" value="بازگزدانی گروه" />
+            <a class="btn btn-outline btn-default" asp-page="Index">انصراف</a>
+        </p>
+    </form>
+
+</div>

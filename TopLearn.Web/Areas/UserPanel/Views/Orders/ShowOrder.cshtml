@@ -1,0 +1,155 @@
+﻿@model TopLearn.DataLayer.Entities.Order.Order
+
+@inject TopLearn.Core.Services.Interfaces.IUserPanelService _userPanel
+
+@{
+    ViewData["Title"] = "فاکتور شما";
+    int OrderSum = Model.OrderSum;
+    string DiscountType = ViewBag.DiscountType.ToString();
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> فاکتور </li>
+        </ul>
+    </nav>
+</div>
+
+
+@if (ViewBag.finalOrder == true)
+{
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="alert alert-success text-center">
+            <p>
+                فاکتور شما با موفقیت پرداخت شد.
+            </p>
+        </div>
+    </div>
+}
+
+
+<main>
+    <div class="container">
+        <div class="user-account">
+            <div class="row">
+                <partial name="_UserPanelSideBar" />
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <section class="user-account-content">
+                        <header>
+                            <h1> فاکتور </h1>
+                        </header>
+                        <br />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>دوره</th>
+                                    <th>تعداد</th>
+                                    <th>قیمت واحد</th>
+                                    <th>جمع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/ShowCourse/@item.Course.CourseId" target="_blank" class="btn btn-link">@item.Course.CourseTitle</a>
+                                        </td>
+                                        <td>@item.Count</td>
+                                        <td>@item.Price</td>
+                                        <td>@((item.Price * item.Count).ToString("#,0")) تومان</td>
+                                    </tr>
+                                }
+                                @if (!Model.IsFainaly)
+                                {
+                                    <tr>
+                                        <td colspan="2" class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+                                            <form method="post" action="/UserPanel/Orders/UseDiscountCode">
+
+                                                <input type="hidden" name="orderId" value="@Model.OrderId" />
+                                                <div class="text-left row text-capitalize col-md-10 col-sm-10 col-lg-10 col-xs-10">
+                                                    <input name="discountCode" placeholder="کد تخفیف را وارد کنید" class="form-control">
+                                                </div>
+                                                <div class="text-left row text-capitalize col-md-4 col-sm-4 col-lg-3 col-xs-4">
+                                                    <input class="btn btn-primary" type="submit" value="اعمال" />
+                                                </div>
+
+                                            </form>
+                                        </td>
+                                        <td colspan="1" class="text-left text-capitalize">
+                                            <p class="text-capitalize"> جمع فاکتور :</p>
+                                        </td>
+                                        <td colspan="1" class="text-capitalize">
+                                            @OrderSum.ToString("#,0") تومان
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <a class="btn btn-success btn-block" @((_userPanel.BalanceBannedUserWallet(User.Identity.Name) >= OrderSum) ? "" : "disabled") href="/UserPanel/FinallyOrder/@Model.OrderId">تایید فاکتور</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        @if (_userPanel.BalanceBannedUserWallet(User.Identity.Name) < OrderSum)
+                                        {
+                                            <td colspan="4">
+                                                <div class="alert alert-danger text-center">
+                                                    موجودی حساب شما کافی نمی باشد،لطفا از این <a href="/UserPanel/Wallet">لینک</a> نسبت به شارژ کردن آن اقدام فرمایید
+                                                </div>
+                                            </td>
+                                        }
+
+                                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                            @if (DiscountType != "")
+                                            {
+                                                switch (DiscountType)
+                                                {
+                                                    case "Success":
+
+                                                        <div class="alert alert-success text-center">
+                                                            کد تخفیف با موفقیت اعمال شد.
+                                                        </div>
+                                                        break;
+
+                                                    case "ExpierDate":
+
+                                                        <div class="alert alert-warning text-center">
+                                                            کد تخفیف منقضی شده است.
+                                                        </div>
+                                                        break;
+
+                                                    case "NotFound":
+
+                                                        <div class="alert alert-warning text-center">
+                                                            کد تخفیف وارد شده معتبر نیست !
+                                                        </div>
+                                                        break;
+
+                                                    case "IsFinished":
+
+                                                        <div class="alert alert-danger text-center">
+                                                            این کد تخفیف غیر قابل استفاده است.
+                                                        </div>
+                                                        break;
+
+                                                    case "UserUsed":
+
+                                                        <div class="alert alert-info text-center">
+                                                            این کد تخفیف توسط شما استفاده شده است.
+                                                        </div>
+                                                        break;
+
+                                                }
+                                            }
+                                        </div>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

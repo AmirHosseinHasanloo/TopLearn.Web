@@ -1,0 +1,65 @@
+﻿@page "{id}"
+@model TopLearn.Web.Pages.Admin.Courses.EditCourseEpisodeModel
+@{
+    ViewData["Title"] = "ویرایش فصل";
+}
+
+<div class="clearfix">
+    <br />
+</div>
+<form method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="courseEpisode.CourseId" />
+    <input type="hidden" asp-for="courseEpisode.EpisodeFileName" />
+    <input type="hidden" asp-for="courseEpisode.EpisodeId" />
+
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-lg-8 col-xs-12">
+            <div class="panel-heading">
+                ( افزودن فصل )
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>عنوان فصل</label>
+                    <input class="form-control" asp-for="courseEpisode.EpisodeTitle" placeholder="عنوان فصل را وارد کنید">
+                    <span asp-validation-for="courseEpisode.EpisodeTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>زمان فصل</label>
+                    <input class="form-control" type="text" asp-for="courseEpisode.EpisodeTime" placeholder="زمان فصل را وارد کنید">
+                    <span asp-validation-for="courseEpisode.EpisodeTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>دسترسی</label>
+                    <div class="checkbox">
+                        <lable>
+                            <input type="checkbox" asp-for="courseEpisode.IsFree" /> رایگان است ؟
+                        </lable>
+                    </div>
+                </div>
+                <button type="submit" class="btn-outline btn-primary btn btn-block">ثبت فصل</button>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    ( ویدیو فصل)
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <br />
+                    <div class="form-group">
+                        <label>انتخاب ویدیو :</label>
+                        <input type="file" name="VideoUP" />
+                        <p class="text-danger">
+                            در صورت وارد کردن فایل جدید ، فایل قبلی حذف و جایگزین فایل جدید خواهد شد 
+                        </p>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+    </div>
+</form>

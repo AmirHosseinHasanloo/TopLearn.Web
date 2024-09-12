@@ -1,0 +1,46 @@
+﻿@model TopLearn.DataLayer.Entities.Question.Question
+
+@{
+    ViewData["Title"] = "پرسش سوال";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+            <h2>
+                ثبت سوال جدید
+            </h2>
+            <hr />
+            <form method="post" asp-action="CreateQuestion">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="CourseId" />
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="QuestionBody" class="control-label"></label>
+                    <textarea asp-for="QuestionBody"> </textarea>
+                    <span asp-validation-for="QuestionBody" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="ثبت پرسش" class="btn btn-block btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("QuestionBody", {
+            customConfig: '/js/Config.js'
+        });
+    </script>
+}

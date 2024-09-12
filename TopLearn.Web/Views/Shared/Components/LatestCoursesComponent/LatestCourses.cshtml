@@ -1,0 +1,6 @@
+﻿@model Tuple<List<TopLearn.Core.DTOs.Course.ShowCourseListItemViewModel>,int>
+
+@foreach (var item in Model.Item1)
+{
+    <partial name="_CourseBox" model="item" />
+}

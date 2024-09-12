@@ -1,0 +1,89 @@
+﻿@page
+@using TopLearn.DataLayer.Entities.User
+@model TopLearn.Web.Pages.Admin.Users.CreateUserModel
+
+@{
+    ViewData["Title"] = "افزودن کاربر";
+    var Roles = ViewData["Roles"] as List<Role>;
+}
+
+<div class="clearfix">
+    <br />
+</div>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    ( افزودن کاربر )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>نام کاربری</label>
+                        <input class="form-control" asp-for="CreateUser.UserName" placeholder="نام کاربری را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label>ایمیل</label>
+                        <input class="form-control" asp-for="CreateUser.Email" placeholder="ایمیل را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label>رمز عبور</label>
+                        <input class="form-control" asp-for="CreateUser.Password" placeholder="رمز عبور را وارد کنید">
+                    </div>
+
+                    <button type="submit" class="btn-outline btn-primary btn btn-block">ذخیره اطلاعات</button>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    ( نقش های کاربر )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>نقش ها - دسترسی ها</label>
+                        @foreach (var Role in Roles)
+                        {
+                            <div class="checkbox">
+                                <label class="text-info">
+                                    <input type="checkbox" value="@Role.RoleId" name="SelectedRoles">@Role.RoleTitle
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    ( آواتار کاربر )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div class="center-block">
+                        <img class="thumbnail" id="Imgreview" src="/UserAvatar/Defualt.png" />
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label>انتخاب آواتار :</label>
+                        <input type="file" id="Image" asp-for="CreateUser.UserAvatar" />
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="/js/uploadedimagepreview.js"></script>
+}

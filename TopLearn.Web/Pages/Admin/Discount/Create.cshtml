@@ -1,0 +1,67 @@
+﻿@page "{handler?}"
+@model TopLearn.Web.Pages.Admin.Discount.CreateModel
+@{
+    ViewData["Title"] = "افزودن کد تخفیف";
+}
+
+<div class="clearfix">
+    <br />
+</div>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    ( افزودن کد تخفیف )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label asp-for="Discount.DiscountCode"></label>
+                        <input class="form-control" asp-for="Discount.DiscountCode" placeholder="کد تخفیف را وارد کنید">
+                        <br />
+                        <div style="display:none" class="alert alert-danger" id="AlertId">
+                            این کد تخفیف قبلا درج شده و غیر قابل استفاده میباشد
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Discount.DiscountPersent"></label>
+                        <input class="form-control" asp-for="Discount.DiscountPersent" placeholder="درصد کد تخفیف را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Discount.UsableCount"></label>
+                        <input class="form-control" asp-for="Discount.UsableCount" placeholder="تعداد کد تخفیف را وارد کنید">
+                    </div>
+                    <button type="submit" class="btn-outline btn-primary btn btn-block">فعالسازی کد تخفیف</button>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    ( تعیین مهلت استفاده کد تخفیف )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label asp-for="Discount.StartDate"></label>
+                        <input type="text" id="startDate" name="startDate" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Discount.EndDate"></label>
+                        <input type="text" id="endDate" name="endDate" />
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+
+  <script src="/js/DiscountCodeChecker.js"></script>
+    <partial name="_KendoDatePickerRefrences"></partial>
+}

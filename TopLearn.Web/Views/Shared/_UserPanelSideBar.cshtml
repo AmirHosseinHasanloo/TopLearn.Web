@@ -1,0 +1,47 @@
+﻿@using TopLearn.Core.Convertors
+@using TopLearn.Core.DTOs
+@using TopLearn.Core.Services.Interfaces
+@inject IUserPanelService _PanelService
+@inject IPermissionServices _permissionService
+
+@{
+    SideBarUserPanelViewModel user = _PanelService.GetSidebarUserPanel(User.Identity.Name);
+}
+<div class="col-md-3 col-sm-4 col-xs-12">
+    <aside>
+        <div class="avatar-layer">
+            <div class="img-layer">
+                <a href="/UserPanel/EditProfile" class="change-image"><i class="zmdi zmdi-edit"></i></a>
+                <img src="/UserAvatar/@user.UserAvatar">
+            </div>
+            <div class="detail">
+                <span> @user.UserName </span>
+                <span> عضویت : @user.RegisterDate.ToShamsi() </span>
+            </div>
+        </div>
+        <section>
+            <header><h3> میز کار شما </h3></header>
+            <div class="inner">
+                <ul>
+                    <li><a href="/UserPanel"> مشاهده حساب کاربری </a></li>
+                    <li><a href="/UserPanel/EditProfile"> ویرایش حساب کاربری </a></li>
+                    <li><a href="/UserPanel/ChangePassword"> تغییر رمز عبور </a></li>
+                    <li><a href="/UserPanel/Wallet"> کیف پول </a></li>
+                    <li><a href="/UserPanel/Orders"> فاکتور ها </a></li>
+                    <li><a href="/Logout"> خروج از حساب کاربری </a></li>
+                </ul>
+            </div>
+        </section>
+        @if (_permissionService.CheckPermission(17, user.UserName))
+        {
+            <section>
+                <header><h3> پنل مدرس </h3></header>
+                <div class="inner">
+                    <ul>
+                        <li><a asp-action="MasterCoursesList" asp-controller="Master"> مدیریت دوره ها </a></li>
+                    </ul>
+                </div>
+            </section>
+        }
+    </aside>
+</div>

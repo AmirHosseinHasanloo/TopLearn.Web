@@ -1,0 +1,141 @@
+﻿@page
+@model TopLearn.Web.Pages.Admin.Courses.CreateCourseModel
+@{
+    ViewData["Title"] = "افزودن دوره";
+}
+
+
+<div class="clearfix">
+    <br />
+</div>
+<form method="post" id="CeateCourseForm" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel-heading">
+                ( افزودن دوره )
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>عنوان دوره</label>
+                    <input class="form-control" asp-for="Course.CourseTitle" placeholder="عنوان دوره را وارد کنید">
+                    <span asp-validation-for="Course.CourseTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>گروه اصلی</label>
+                    <select class="form-control" asp-for="Course.GroupId" asp-items="@(ViewData["Groups"] as SelectList)"></select>
+                    <span asp-validation-for="Course.GroupId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>زیر گروه</label>
+                    <select class="form-control" asp-for="Course.SubGroupId" asp-items="@(ViewData["SubGroups"] as SelectList)"></select>
+                    <span asp-validation-for="Course.SubGroupId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>مدرس دوره</label>
+                    <select class="form-control" asp-for="Course.TeacherId" asp-items="@(ViewData["Teachers"] as SelectList)"></select>
+                    <span asp-validation-for="Course.TeacherId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>شرح دوره</label>
+                    <textarea class="form-control" rows="10" asp-for="Course.CourseDescription"></textarea>
+                    <span asp-validation-for="Course.CourseDescription" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>قیمت دوره</label>
+                    <input class="form-control" type="number" value="0" asp-for="Course.CoursePrice" />
+                    <p class="help-block"> در صورت وارد نکردن قیمت دوره رایگان منتشر خواهد شد. </p>
+                    <span asp-validation-for="Course.CoursePrice" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>فایل دموی دوره</label>
+                    <input class="form-control" type="file" name="demoUP" />
+                    <span asp-validation-for="Course.DemoFileName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>کلمات کلیدی دوره</label>
+                    <input class="form-control" type="text" placeholder="مثال : کلمه کلیدی اول ، کلمه کلیدی دوم ، کلمه کلیدی سوم" asp-for="Course.Tags" />
+                    <p class="help-block">کلمات کلیدی را با علامت ویرگول ، از یکدیگر جدا کنید</p>
+                    <span asp-validation-for="Course.Tags" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Course.MetaDescription"></label>
+                    <textarea asp-for="Course.MetaDescription" class="form-control"></textarea>
+                    <p></p>
+                    <div class="alert alert-info">
+                        <p class="help-block">کاربر گرامی متا حداکثر باید 200 کارکتر و نباید بیش از 300 کرکتر بشود و نوشتن آن اجباریست لطفا توضیحاتی با مسما و سئو شده بنویسید .</p>
+                    </div>
+                    <span asp-validation-for="Course.MetaDescription" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn-outline btn-primary btn btn-block">ثبت دوره</button>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                    ( تصویر دوره )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div class="center-block">
+                        <img class="thumbnail" id="Imgreview" src="/CourseImages/Images/course_no_image.png" />
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label>انتخاب تصویر :</label>
+                        <input type="file" id="Image" name="ImageUP" />
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading text-center">
+                    ( وضعیت دوره )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <select class="form-control" asp-for="Course.StatusId" asp-items="@(ViewData["CourseStatus"] as SelectList)"></select>
+                        <span asp-validation-for="Course.StatusId" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    ( سطح دوره )
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <select class="form-control" asp-for="Course.LevelId" asp-items="@(ViewData["CourseLevels"] as SelectList)"></select>
+                        <span asp-validation-for="Course.LevelId" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="/js/ShowSubGroups.js"></script>
+    <script src="/js/uploadedimagepreview.js"></script>
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script src="/js/inputckmaker.js"></script>
+    <script src="/js/coursedescriptionckmaker.js"></script>
+}

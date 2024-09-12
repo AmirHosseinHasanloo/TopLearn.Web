@@ -1,0 +1,89 @@
+﻿@page
+@model TopLearn.Web.Pages.Admin.CourseGroups.IndexModel
+@{
+    ViewData["Title"] = "لیست گروه های آموزشی";
+}
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                لیست کاربران تاپ لرن
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                            <a href="/Admin/CourseGroups/Create" class="btn btn-block btn-success">افزودن سر گروه برای دوره  ها</a>
+                            <a href="/Admin/CourseGroups/DeletedGroups" class="btn btn-block btn-danger">گروه های حذف شده</a>
+                        </div>
+                        <br />
+                        <div class="clearfix"></div>
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">گروه</th>
+                                    <th class="text-center">زیر گروه</th>
+                                    <th class="text-center">دستورات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var Group in Model.CourseGroup.Where(cg => cg.ParentId == null))
+                                {
+                                    <tr>
+                                        <td class="text-center">@Group.GroupTitle</td>
+                                        <td>
+                                            @if (Model.CourseGroup.Any(sb => sb.ParentId == Group.GroupId))
+                                            {
+                                                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                                    <ol>
+                                                        @foreach (var SubGroup in Model.CourseGroup.Where(cg => cg.ParentId == Group.GroupId))
+                                                        {
+                                                            <li class="list-group-item row">
+                                                                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                                                    <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                                                        @SubGroup.GroupTitle
+                                                                    </div>
+                                                                    <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                                                        <a class="btn btn-sm btn-danger" href="/Admin/CourseGroups/Delete/@SubGroup.GroupId">حذف</a>
+                                                                        <a class="btn btn-sm btn-warning" href="/Admin/CourseGroups/Edit/@SubGroup.GroupId">ویرایش</a>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                    </ol>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+                                                    <div class="alert alert-info text-center">
+                                                        کاربر گرامی این سر گروه زیر گروهی ندارد
+                                                    </div>
+                                                </div>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-block btn-danger" href="/Admin/CourseGroups/Delete/@Group.GroupId">حذف سرگروه</a>
+                                            <a class="btn btn-block btn-warning" href="/Admin/CourseGroups/Edit/@Group.GroupId">ویرایش سرگروه</a>
+                                            <a href="/Admin/CourseGroups/Create/@Group.GroupId" class="btn btn-block btn-primary">افزودن زیر گروه</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table><div class="row">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

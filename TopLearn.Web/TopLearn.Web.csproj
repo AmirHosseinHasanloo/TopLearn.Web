@@ -1,0 +1,81 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <StartupObject>TopLearn.Web.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Elmah.Io.AspNetCore" Version="5.0.56" />
+    <PackageReference Include="HtmlSanitizer" Version="8.0.865" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="SharpCompress" Version="0.36.0" />
+    <PackageReference Include="ZarinPalSandbox" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TopLearn.Core\TopLearn.Core.csproj" />
+    <ProjectReference Include="..\TopLearn.DataLayer\TopLearn.DataLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\CourseEpisodes\EpisodeVideo\" />
+    <Folder Include="wwwroot\CkImages\" />
+    <Folder Include="wwwroot\CourseImages\demos\" />
+    <Folder Include="wwwroot\CourseFilesOnline\" />
+    <Folder Include="wwwroot\OnlineCourse\" />
+    <Folder Include="wwwroot\UserAvatar\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\fonts\Material-Design-Iconic-Font.svg" />
+    <None Include="wwwroot\css\fonts\Material-Design-Iconic-Font.woff2" />
+    <None Include="wwwroot\js\AddCommentCkMaker.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\Config.js" />
+    <None Include="wwwroot\js\CourseDescriptionCkMaker.js" />
+    <None Include="wwwroot\js\DiscountCodeChecker.js" />
+    <None Include="wwwroot\js\InputCkMaker.js" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\jquery.unobtrusive-ajax.js" />
+    <None Include="wwwroot\js\jquery.unobtrusive-ajax.min.js" />
+    <None Include="wwwroot\js\jquery.validate.js" />
+    <None Include="wwwroot\js\jquery.validate.min.js" />
+    <None Include="wwwroot\js\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\js\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\js\JqueryUi.js" />
+    <None Include="wwwroot\js\kendo.all.min.js" />
+    <None Include="wwwroot\js\Login.js" />
+    <None Include="wwwroot\js\modernizr-custom.js" />
+    <None Include="wwwroot\js\NoUISliderSettings.js" />
+    <None Include="wwwroot\js\script.js" />
+    <None Include="wwwroot\js\ShowCourse.js" />
+    <None Include="wwwroot\js\ShowSubGroups.js" />
+    <None Include="wwwroot\js\UploadedImagePreview.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

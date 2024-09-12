@@ -1,0 +1,46 @@
+﻿@using TopLearn.Core.Convertors
+@model Tuple<List<TopLearn.DataLayer.Entities.Course.CourseComment>,int>
+
+
+@foreach (var Comment in Model.Item1.Where(c => c.ParentId == null))
+{
+    <!-- row -->
+    <div class="comment-row">
+        <div class="text-left row">
+            <a class="btn btn-sm btn-info" onclick="ReplyComment(@Comment.CommentId)">پاسخ</a>
+        </div>
+        <img src="/UserAvatar/@Comment.User.UserAvatar">
+        <div class="left-col">
+            <h3> @Comment.User.UserName </h3>
+            <span>ارسال شده در @Comment.CreateDate.ToShamsi()</span>
+            <p>
+                @Html.Raw(Comment.Comment)
+            </p>
+        </div>
+
+        @foreach (var SubComment in Model.Item1.Where(c => c.ParentId == Comment.CommentId))
+        {
+            <div class="comment-row">
+                <hr>
+                <img src="/UserAvatar/@SubComment.User.UserAvatar">
+                <div class="left-col">
+                    <h3> @SubComment.User.UserName </h3>
+                    <span>پاسخ ارسال شده در @SubComment.CreateDate.ToShamsi()</span>
+                    <p>
+                        @Html.Raw(SubComment.Comment)
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @for (int i = 1; i <= Model.Item2; i++)
+        {
+            <li class="page-item"><a class="page-link" onclick="ShowPageComments(@i)">@i</a></li>
+        }
+    </ul>
+</nav>

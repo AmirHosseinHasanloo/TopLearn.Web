@@ -1,0 +1,1 @@
+﻿InputCkMaker("comment_Comment").val("");

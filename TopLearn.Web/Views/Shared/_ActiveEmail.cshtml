@@ -1,0 +1,25 @@
+﻿@model TopLearn.DataLayer.Entities.User.User
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ایمیل فعال سازی</title>
+</head>
+<body style="font-family: fantasy, 'Segoe UI', Tahoma, sans-serif;" dir="rtl">
+    <div style="text-align:center; height: 250px; width: 50%; background: linear-gradient(45deg,#05abe0 0%,#8200f4 100%);  margin: auto; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.25);">
+        <div>
+            <h2 style="margin:auto; color: white;text-align: center;">ایمیل فعال سازی</h2>
+            <br>
+            <p style="text-align: center; color: white;"> "@Model.UserName" عزیز</p>
+            <br>
+            <p style="text-align: center; color: white;"> از ثبت نام شما متشکریم ، برای فعالسازی حساب خود و ادامه مراحل ثبت نام روی فعالسازی حساب کلیک کنید </p>
+            <br>
+            <div style="background:aliceblue; border-radius:12px; height:25px; width:120px; text-align: center; margin: auto; box-shadow: 0 5px 10px rgba(0,0,0,0.25);">
+                <a style="text-decoration: none" href="https://localhost:5001/Account/ActiveAccount/@Model.ActiveCode"> فعالسازی حساب</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

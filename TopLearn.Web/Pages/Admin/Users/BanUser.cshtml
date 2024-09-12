@@ -1,0 +1,43 @@
+﻿@page "{id}"
+@using TopLearn.Core.Convertors
+@model TopLearn.Web.Pages.Admin.Users.BanUserModel
+@{
+    ViewData["Title"] = "بن کردن کاربر";
+}
+
+<div class="clearfix">
+    <br />
+</div>
+
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            بن کردن کاربر
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <input type="hidden" name="userId" value="@ViewData["UserId"]" />
+                <dl class="dl-horizontal">
+                    <dt>نام کاربری</dt>
+                    <dd>@Model.UserInfo.UserName</dd>
+                    <br />
+                    <dt>ایمیل</dt>
+                    <dd>@Model.UserInfo.Email</dd>
+                    <br />
+                    <dt>موجودی کیف پول</dt>
+                    <dd>@Model.UserInfo.Wallet.ToString("#,0") تومان</dd>
+                    <br />
+                    <dt>تاریخ ثبت نام</dt>
+                    <dd>@Model.UserInfo.RegisterDate.ToShamsi()</dd>
+                    <dt></dt>
+                    <dd>
+                        <input type="submit" class="btn btn-danger" value="بن" />
+                    </dd>
+                    <br />
+                </dl>
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>

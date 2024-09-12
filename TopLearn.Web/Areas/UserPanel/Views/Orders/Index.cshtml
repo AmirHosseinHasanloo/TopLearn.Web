@@ -1,0 +1,92 @@
+﻿@using TopLearn.Core.Convertors
+@model TopLearn.Core.DTOs.UserOrdersForUserPanelViewModel
+@{
+    ViewData["Title"] = "فاکتور های شما";
+}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">تاپ لرن</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> فاکتور های شما </li>
+        </ul>
+    </nav>
+</div>
+
+
+
+<main>
+    <div class="container">
+        <div class="user-account">
+            <div class="row">
+                <partial name="_UserPanelSideBar" />
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <section class="user-account-content">
+                        <header>
+                            <h1> فاکتور </h1>
+                        </header>
+                        <br />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>شماره فاکتور</th>
+                                    <th>تاریخ ثبت</th>
+                                    <th>وضعیت</th>
+                                    <th>جمع</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var order in Model.Orders)
+                                {
+                                    <tr>
+                                        <td>@order.OrderId</td>
+                                        <td>@order.CreateDate.ToShamsi()</td>
+                                        <td>
+                                            @if (order.IsFainaly)
+                                            {
+                                                <p class="text-success">پرداخت شده</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-danger">پرداخت نشده</p>
+                                            }
+                                        </td>
+                                        <td>@order.OrderSum.ToString("#,0") تومان</td>
+                                        <td>
+                                            @if (order.IsFainaly)
+                                            {
+                                                <a class="btn btn-info" href="/UserPanel/ShowOrder/@order.OrderId"> نـمـایـش  </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-success" href="/UserPanel/ShowOrder/@order.OrderId">پرداخت</a>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                        <div class="col-sm-12 col-sm-12 text-center">
+                            <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                                <ul class="pagination">
+
+                                    @for (int i = 1; i <= Model.PageCount; i++)
+                                    {
+                                        <li class="paginate_button @((i==Model.CurrentPage?"active":""))" aria-controls="dataTables-example" tabindex="0">
+                                            <a href="/UserPanel/Orders?PageId=@i"> @i </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

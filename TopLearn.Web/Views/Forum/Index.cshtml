@@ -1,0 +1,86 @@
+﻿@using TopLearn.Core.Convertors
+@using TopLearn.Core.DTOs.Forum
+@inject TopLearn.Core.Services.Interfaces.IUserService _userService
+@inject TopLearn.Core.Services.Interfaces.ICourseService _courseService
+
+@model FilterQuestionVM
+@{
+    ViewData["Title"] = ViewData["CourseTitle"];
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<div id="Question_content">
+
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"> تاپ لرن </a></li>
+                <li class="breadcrumb-item"><a href="/Forum/Questions"> پرسش و پاسخ </a></li>
+                <li class="breadcrumb-item active" aria-current="page"> @ViewData["CourseTitle"] </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div class="container">
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (_userService.IsUserBuyedThisCourse(ViewBag.CourseId, User.Identity.Name)
+            || _courseService.CourseIsFree(ViewBag.CourseId))
+            {
+                <a class="btn btn-block btn-success" href="/Forum/CreateQuestion/@ViewBag.CourseId"> پرسش سوال </a>
+            }
+            else
+            {
+                <div class="col-md-12 alert alert-danger text-center">
+                    کاربر گرامی برای پرسش سوال حتما باید دوره را خریداری کرده باشید
+                </div>
+            }
+        }
+
+    </div>
+    <div class="container alert alert-link">
+        <form method="get" asp-action="Index">
+            <div class="form-group">
+                <input type="text" class="form-control" name="filter" placeholder="از اینجا دنبال سوالت بگرد" />
+                <br />
+                <button type="submit" class="btn btn-block btn-primary">پیدا کن</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var questions in Model.questions)
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="inner">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <label class="label label-info">
+                                    عنوان سوال :
+                                </label>
+
+                                <h4 class="h4">@questions.Title</h4>
+                            </div>
+                            <div class="panel-footer">
+                                <img src="~/UserAvatar/@questions.User.UserAvatar" style="max-width: 50px; border-radius: 20px;" />
+                                @questions.User.UserName | @questions.CreateDate.ToShamsi()
+                                <a class="btn btn-link" href="/Forum/ShowQuestion/@questions.CourseId"> مشاهده سوال</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class="page-item"><a class="page-link" href="/Forum/Index/@ViewBag.CourseId?pageId=@i">@i</a></li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
+

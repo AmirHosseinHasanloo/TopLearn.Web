@@ -1,0 +1,62 @@
+﻿@page
+@model TopLearn.Web.Pages.Admin.Roles.IndexModel
+@{
+    ViewData["Title"] = "لیست سطوح دسترسی";
+}
+
+<div class="clearfix">
+    <br />
+    <br />
+</div>
+<div class="container">
+    <a class="btn btn-success" asp-page="CreateRole"> <span class="glyphicon glyphicon-plus"></span> افزودن نقش</a>
+    <a class="btn btn-danger" asp-page="DeletedRoles"> <span class="glyphicon glyphicon-trash"></span> نقش های حذف شده</a>
+</div>
+
+<div class="clearfix">
+    <br />
+    <br />
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                لیست سطح دسترسی <span class="text-info"> (نقش) </span> های تعریف شده
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">عنوان نقش - سطح دسترسی</th>
+                                    <th class="text-center"> دستورات </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <tr>
+                                        <td class="text-center">@role.RoleTitle</td>
+
+                                        <td class="text-center">
+                                            <a href="/Admin/Roles/EditRole/@role.RoleId" class="btn-sm btn-warning">ویرایش</a>
+                                            <a href="/Admin/Roles/DeleteRole/@role.RoleId" class="btn-sm btn-danger">حذف</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table><div class="row">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
