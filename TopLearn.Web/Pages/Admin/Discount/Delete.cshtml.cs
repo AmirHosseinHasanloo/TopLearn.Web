@@ -6,7 +6,7 @@ using TopLearn.Core.Services.Interfaces;
 
 namespace TopLearn.Web.Pages.Admin.Discount
 {
-    [PermissionChecker(13)]
+    [PermissionChecker(15)]
     public class DeleteModel : PageModel
     {
         private IOrderService _OrderService;

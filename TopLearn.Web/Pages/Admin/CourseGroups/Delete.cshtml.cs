@@ -6,7 +6,7 @@ using TopLearn.DataLayer.Entities.Course;
 
 namespace TopLearn.Web.Pages.Admin.CourseGroups
 {
-    [PermissionChecker(26)]
+    [PermissionChecker(30)]
     public class DeleteModel : PageModel
     {
         private ICourseService _CourseService;

@@ -7,7 +7,7 @@ using TopLearn.DataLayer.Entities.Course;
 
 namespace TopLearn.Web.Pages.Admin.Courses
 {
-    [PermissionChecker(22)]
+    [PermissionChecker(23)]
     [RequestSizeLimit(524288000)]
     public class EditCourseEpisodeModel : PageModel
     {

@@ -5,7 +5,7 @@ using TopLearn.Core.Services.Interfaces;
 
 namespace TopLearn.Web.Pages.Admin.Discount
 {
-    [PermissionChecker(15)]
+    [PermissionChecker(17)]
     public class RecoveryModel : PageModel
     {
         private IOrderService _OrderService;

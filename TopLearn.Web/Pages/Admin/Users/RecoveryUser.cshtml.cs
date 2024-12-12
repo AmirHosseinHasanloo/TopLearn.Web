@@ -6,7 +6,7 @@ using TopLearn.Core.Services.Interfaces;
 
 namespace TopLearn.Web.Pages.Admin.Users
 {
-    [PermissionChecker(6)]
+    [PermissionChecker(2)]
     public class RecoveryUserModel : PageModel
     {
         private IUserPanelService _userPanelService;

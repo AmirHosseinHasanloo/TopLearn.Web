@@ -7,7 +7,7 @@ using TopLearn.Core.Services.Interfaces;
 
 namespace TopLearn.Web.Pages.Admin.Courses
 {
-    [PermissionChecker(17)]
+    [PermissionChecker(18)]
     public class IndexModel : PageModel
     {
         private ICourseService _courseService;

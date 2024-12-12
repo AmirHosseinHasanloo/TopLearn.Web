@@ -8,7 +8,7 @@ using TopLearn.DataLayer.Entities.Course;
 
 namespace TopLearn.Web.Pages.Admin.Courses
 {
-    [PermissionChecker(20)]
+    [PermissionChecker(21)]
     public class IndexEpisodeModel : PageModel
     {
         ICourseService _courseService;

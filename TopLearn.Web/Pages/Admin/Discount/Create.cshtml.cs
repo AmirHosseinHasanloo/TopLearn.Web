@@ -7,7 +7,7 @@ using TopLearn.Core.Services.Interfaces;
 
 namespace TopLearn.Web.Pages.Admin.Discount
 {
-    [PermissionChecker(11)]
+    [PermissionChecker(13)]
     public class CreateModel : PageModel
     {
         private IOrderService _OrderService;

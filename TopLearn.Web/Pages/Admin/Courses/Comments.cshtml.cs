@@ -7,7 +7,7 @@ using TopLearn.DataLayer.Entities.Course;
 
 namespace TopLearn.Web.Pages.Admin.Courses
 {
-    [PermissionChecker(16)]
+    [PermissionChecker(24)]
     public class CommentsModel : PageModel
     {
         private ICourseService _CourseService;

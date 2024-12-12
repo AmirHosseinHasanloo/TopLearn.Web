@@ -7,7 +7,7 @@ using TopLearn.Core.Security;
 
 namespace TopLearn.Web.Pages.Admin.Discount
 {
-    [PermissionChecker(12)]
+    [PermissionChecker(14)]
     public class EditModel : PageModel
     {
 
