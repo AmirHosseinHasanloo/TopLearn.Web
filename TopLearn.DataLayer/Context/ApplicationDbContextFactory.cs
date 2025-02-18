@@ -13,7 +13,7 @@ namespace TopLearn.DataLayer.Context
         public TopLearnContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TopLearnContext>();
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=FineLearn_DB;User Id=sa;Password=asadasad;Trusted_Connection=true;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=TopLearn_DB;User Id=sa;Password=asad@1384;TrustServerCertificate=True");
 
             return new TopLearnContext(optionsBuilder.Options);
         }

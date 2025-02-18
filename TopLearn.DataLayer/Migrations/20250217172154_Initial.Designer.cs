@@ -12,8 +12,8 @@ using TopLearn.DataLayer.Context;
 namespace TopLearn.DataLayer.Migrations
 {
     [DbContext(typeof(TopLearnContext))]
-    [Migration("20240409132348_init_Again")]
-    partial class init_Again
+    [Migration("20250217172154_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -408,6 +408,9 @@ namespace TopLearn.DataLayer.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsTrue")
+                        .HasColumnType("bit");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
